@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
+import { CartProvider } from "@/lib/Hooks/client/Cart";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} + bg-mainBg`}>{children}</body>
+      <body className={`${inter.className} + bg-mainBg`}>
+        <CartProvider>
+        <div className="w-full h-full overflow-y-scroll">
+        {children}
+        </div>
+        <Toaster />
+        </CartProvider>
+      </body>
     </html>
   );
 }

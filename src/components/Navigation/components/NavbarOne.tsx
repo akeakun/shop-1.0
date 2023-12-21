@@ -7,7 +7,7 @@ import Cart from "./NavbarOneComponents/WiCart/Cart/Cart";
 const NavbarOne = () => {
   return (
     <div className="w-full h-full px-4 py-2 flex justify-between items-center">
-      <section>
+      <section className="lg:hidden">
       <MobileHamburg />
       </section>
       <section><Logo /></section>
