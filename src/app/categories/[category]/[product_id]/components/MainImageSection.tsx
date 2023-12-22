@@ -11,6 +11,7 @@ type MainImageSectionTypes = {
 const MainImageSection = ({images}: MainImageSectionTypes) => {
     
       const [currentImage, setCurrentImage] = useState(0);
+      const [loading, setLoading] = useState(true)
     
       const setImage = (e: number) => {
         console.log(e);
@@ -18,6 +19,7 @@ const MainImageSection = ({images}: MainImageSectionTypes) => {
           return e;
         });
       };
+
   return (
     <section className="flex flex-col items-center md:flex-1 max-w-3xl">
           {/* image slider */}

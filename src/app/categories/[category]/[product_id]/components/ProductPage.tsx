@@ -1,14 +1,14 @@
+import Link from "next/link";
 import MainImageSection from "./MainImageSection";
 import ProductDescription from "./ProductDescription";
 import SimilarProducts from "./SimilarProducts";
+import { MoveRight } from "lucide-react";
 
 type ProductPageTypes = {
-  product: any
+  product: any;
 };
 
-const ProductPage = ({product}: ProductPageTypes ) => {
-  console.log(product);
-  
+const ProductPage = ({ product }: ProductPageTypes) => {
   return (
     <div>
       <section className="flex flex-col md:flex-row md:justify-center">
@@ -16,10 +16,31 @@ const ProductPage = ({product}: ProductPageTypes ) => {
         <ProductDescription product={product} />
       </section>
       <section>
-        <SimilarProducts/>
+        <header className="text-center mb-4">
+          <h2 className="text-xl font-semibold">Similar Products</h2>
+          <p className="text-base font-medium">
+            Products with similar category
+          </p>
+        </header>
+        <SimilarProducts />
       </section>
-      <section>
-
+      {/* something else products */}
+      {/* <section>
+      <header className="text-center mb-4">
+          <h2 className="text-xl font-semibold">Similar Products</h2>
+          <p className="text-base font-medium">
+            Products with similar category
+          </p>
+        </header>
+      </section> */}
+      <section className="my-4 p-4">
+        <Link
+          href={"/categories"}
+          className="flex justify-center items-center space-x-2 w-full max-w-lg bg-button text-buttonText p-2"
+        >
+          <p>More categories</p>
+          <MoveRight />
+        </Link>
       </section>
     </div>
   );

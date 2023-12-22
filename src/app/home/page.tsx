@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Canvas from "./components/canvas/Canvas";
 import Featured from "./components/featured/Featured";
+import Footer from "@/components/Footer/Footer";
 
 const Page = () => {
   return (
@@ -12,6 +13,7 @@ const Page = () => {
           <Featured />
         </div>
       </section>
+      <Footer/>
     </>
   );
 };

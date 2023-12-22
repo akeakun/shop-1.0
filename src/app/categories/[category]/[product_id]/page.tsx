@@ -4,6 +4,7 @@ import { prodData } from "@/lib/demodata";
 import { permanentRedirect } from "next/navigation";
 import ProductPage from "./components/ProductPage";
 import ShareProduct from "./components/ShareProduct";
+import Footer from "@/components/Footer/Footer";
 
 type PageTypes = {
   params: { category: string; product_id: string };
@@ -28,6 +29,7 @@ const Page = async ({ params, searchParams }: PageTypes) => {
             <ProductPage product={product[0]} />
           </div>
         </section>
+        <Footer/>
       </>
     );
   }

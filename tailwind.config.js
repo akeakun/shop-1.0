@@ -23,6 +23,7 @@ module.exports = {
         mainNav: "var(--nav-bg)",
         secNav: "var(--sec-nav-bg)",
         mainBg: "var(--main-bg)",
+        special: "var(--special)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

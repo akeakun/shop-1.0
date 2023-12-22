@@ -28,8 +28,8 @@ const ProductDescription = ({ product }: ProductDescriptionTypes) => {
     <section className="p-4">
       {/* product details */}
       <div>
-        <h3>Awesome T-shirt for men above the age of 18</h3>
-        <p>1700৳</p>
+        <h3 className="font-semibold text-lg py-1">Awesome T-shirt for men above the age of 18</h3>
+        <p><span className="text-red-500">1700</span>৳</p>
         <p className="py-2 text-sm">
           SKU:&nbsp;<span className="font-semibold">#{product.sku}</span>
         </p>
@@ -67,14 +67,6 @@ const ProductDescription = ({ product }: ProductDescriptionTypes) => {
             Yes. It adheres to the WAI-ARIA design pattern.
           </AccordionContent>
         </AccordionItem>
-        <Separator className="bg-black" />
-        <Link
-          href={"#comments"}
-          className=" h-14 flex items-center justify-between hover:underline font-medium"
-        >
-          <p>Comments</p>
-          <ChevronRight size={18} />
-        </Link>
         <Separator className="bg-black" />
         <Link
           href={"#reviews"}
