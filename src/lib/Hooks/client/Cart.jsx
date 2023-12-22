@@ -5,20 +5,22 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-  const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     if (loaded) {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }
-    setLoaded(true)
+    setLoaded(true);
   }, [cartItems]);
 
   useEffect(() => {
     if (window !== undefined) {
       try {
         const localCart = localStorage.getItem("cartItems");
-      console.log(localCart);
-      localCart !== null ? setCartItems(JSON.parse(localCart)) : setCartItems([]);
+        console.log(localCart);
+        localCart !== null
+          ? setCartItems(JSON.parse(localCart))
+          : setCartItems([]);
       } catch (error) {
         console.log("error");
       }
@@ -26,8 +28,10 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   const addToCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id && cartItem.size === item.size);
-console.log(isItemInCart);
+    const isItemInCart = cartItems.find(
+      (cartItem) => cartItem.id === item.id && cartItem.size === item.size
+    );
+    console.log(isItemInCart);
     if (isItemInCart) {
       setCartItems(
         cartItems.map((cartItem) =>
@@ -42,19 +46,11 @@ console.log(isItemInCart);
   };
 
   const removeFromCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
-
-    if (isItemInCart) {
-      setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
-    } else {
-      setCartItems(
-        cartItems.map((cartItem) =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        )
-      );
-    }
+    setCartItems(
+      cartItems.filter((cartItem) => {
+        return cartItem.id == item.id && cartItem.size !== item.size;
+      })
+    );
   };
 
   const clearCart = () => {
@@ -68,14 +64,13 @@ console.log(isItemInCart);
   //   );
   // };
 
-
   return (
     <CartContext.Provider
       value={{
         cartItems,
         addToCart,
         removeFromCart,
-        clearCart,
+        // clearCart,
         // getCartTotal,
       }}
     >

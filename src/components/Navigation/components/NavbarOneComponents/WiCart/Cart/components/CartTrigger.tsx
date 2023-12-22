@@ -11,12 +11,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
-import { Minus, MoveRight, Plus, ShoppingBag } from "lucide-react";
+import { Minus, MoveRight, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 const CartTrigger = () => {
-  const { cartItems, addToCart, removeFromCart, clearCart } = useContext(CartContext);
+  const { cartItems, removeFromCart } = useContext(CartContext);
 
   return (
     <Sheet>
@@ -43,19 +43,21 @@ const CartTrigger = () => {
           {cartItems.length > 0 && (
             <>
               <div className=" w-full flex-1 my-2">
-                <ScrollArea className="h-full w-full space-y-1.5 rounded-md border p-0">
-                  {cartItems.map((item, index) => (
+                <ScrollArea className="h-full w-full rounded-md border p-0">
+                  <div className="space-y-1.5">
+                  {cartItems.map((item: any, index: any) => (
                     <div className="flex h-[110px] w-full relative">
-                      <Image
+                      <Link href={`/categories/${item.category}/${item.id}`}><Image
                         src={`/products/${item.image}`}
                         alt={item.name}
                         height={120}
                         width={120}
-                        className="rounded-md w-auto object-cover"
-                      />
+                        className="rounded-md h-full w-auto object-cover"
+                      /></Link>
+                      
                       <div className="flex-1 px-2">
                         <Link
-                          className="text-sm font-semibold"
+                          className="text-sm font-semibold hover:underline line-clamp-2 tracking-wider"
                           href={`/categories/${item.category}/${item.id}`}
                         >
                           {item.name}
@@ -64,22 +66,21 @@ const CartTrigger = () => {
                           <span className="text-sm">Size:&nbsp;</span>
                           {item.size}
                         </p>
+                        <p className="text-base">
+                          <span className="text-sm">Quantity:&nbsp;</span>
+                          {item.quantity}
+                        </p>
                         <p className="text-base ">
                           <span className="text-sm">Price: </span>
                           {item.price}৳
                         </p>
                       </div>
-                      <div className="flex flex-col items-center">
-                        <button className="border border-gray-800 cursor-pointer" onClick={removeFromCart(item)}>
-                          <Minus />
-                        </button>
-                        <span className="w-full text-center border-l border-r border-gray-800">{item.quantity}</span>
-                        <button className="border border-gray-800 cursor-pointer" onClick={addToCart(item)}>
-                          <Plus />
-                        </button>
-                      </div>
+                      <button className=" bg-gray-300 rounded-md px-1 cursor-pointer" onClick={() => removeFromCart(item)}>
+                      <Trash2 />
+                      </button>
                     </div>
                   ))}
+                  </div>
                 </ScrollArea>
               </div>
               <Separator className="bg-secNav" />
@@ -93,6 +94,7 @@ const CartTrigger = () => {
                   <span>{}</span>
                 </div>
               </div>
+              <button className="bg-button text-buttonText py-2 hover:bg-gray-900">Continue to Checkout</button>
             </>
           )}{" "}
           {cartItems.length === 0 && (
