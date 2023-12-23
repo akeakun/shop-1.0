@@ -20,8 +20,8 @@ const CartTrigger = () => {
 
   return (
     <Sheet>
-      <SheetTrigger className="relative hover:bg-gray-800 rounded-full p-2">
-        <div className="absolute top-0 right-0 p-1 badge badge-secondary">
+      <SheetTrigger className="relative hover:bg-gray-800 rounded-full p-4">
+        <div className="absolute top-1 right-1 p-1 badge badge-secondary">
           {cartItems.length}
         </div>
         <ShoppingBag />

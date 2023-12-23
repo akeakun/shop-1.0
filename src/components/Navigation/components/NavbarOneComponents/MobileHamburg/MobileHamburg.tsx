@@ -22,11 +22,11 @@ import Account from "./components/Account";
 const MobileHamburg = () => {
   return (
     <Sheet>
-      <SheetTrigger className=" rounded-full hover:bg-gray-800 p-2">
+      <SheetTrigger className=" rounded-full hover:bg-gray-800 p-4">
         <Menu />
       </SheetTrigger>
       <SheetContent
-        className=" bg-mainBg p-0 sm:max-w-[320px] h-[100vh] flex flex-col"
+        className=" bg-mainBg p-0 sm:max-w-[320px] flex flex-col"
         side={"left"}
       >
         <div className="h-12 bg-mainNav relative">

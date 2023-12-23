@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} + bg-mainBg`}>
         <CartProvider>
-        <div className="w-full h-full overflow-y-scroll">
+        <div className="w-full h-full">
         {children}
         </div>
         <Toaster />
