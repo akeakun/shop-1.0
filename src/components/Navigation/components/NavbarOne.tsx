@@ -1,7 +1,6 @@
 import DesktopNavbar from "./NavbarOneComponents/DesktopNavbar/DesktopNavbar";
 import Logo from "./NavbarOneComponents/Logo/Logo";
 import MobileHamburg from "./NavbarOneComponents/MobileHamburg/MobileHamburg";
-import SearchBox from "./NavbarOneComponents/SearchBox/SearchBox";
 import Cart from "./NavbarOneComponents/WiCart/Cart/Cart";
 
 const NavbarOne = () => {

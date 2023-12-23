@@ -33,7 +33,7 @@ const ProductPage = ({ product }: ProductPageTypes) => {
           </p>
         </header>
       </section> */}
-      <section className="my-4 p-4">
+      <section className="mt-4 p-2 flex justify-center">
         <Link
           href={"/categories"}
           className="flex justify-center items-center space-x-2 w-full max-w-lg bg-button text-buttonText p-2"

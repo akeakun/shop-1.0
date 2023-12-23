@@ -18,14 +18,10 @@ const BreadCrumb = () => {
 
   const crumbList = [{ href: "/", title: "Home" }, ...tempCrumbList];
 
-  console.log(pathName);
-
-  console.log(asPathWithoutQuery);
-
   return (
     <section className="w-full flex flex-col flex-1 items-center ">
       <div className="page-style-container px-4 py-2">
-        <div className="text-sm breadcrumbs">
+        <div className="w-full text-sm breadcrumbs">
           <ul>
             {crumbList.map((item, index) => (
               <>

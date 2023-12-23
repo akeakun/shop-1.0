@@ -5,13 +5,14 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
-import { MoveRight, ShoppingBag, Trash2 } from "lucide-react";
+import { MoveRight, ShoppingBag, ShoppingCart, Trash2, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 const CartTrigger = () => {
@@ -25,26 +26,29 @@ const CartTrigger = () => {
         </div>
         <ShoppingBag />
       </SheetTrigger>
-      <SheetContent className=" bg-mainBg p-4 w-10/12 md:max-w-[380px]">
+      <SheetContent className=" bg-mainBg p-0 w-10/12 md:max-w-[380px]">
         <section className="h-full flex flex-col">
-          <section>
-            <h3 className="text-xl font-bold uppercase">Your Cart</h3>
-            <Separator className="bg-secNav" />
-            <div className="flex justify-center space-x-1">
+          <section className=" h-16 pb-2 mb-2 bg-mainNav text-buttonText relative">
+            <h3 className="text-xl text-center font-bold uppercase px-4 py-1">Your Cart</h3>
+            <div className="flex justify-center space-x-1 text-sm">
               <p>Total items</p>{" "}
               <span className=" px-1.5 border border-red-600 rounded-full">
                 {cartItems.length}
               </span>
             </div>
+            <SheetClose className="absolute top-0 right-0 pt-2 pr-4">
+              <X/>
+            </SheetClose>
+            <Separator className="bg-secNav" />
           </section>
-          <section className="h-full flex flex-col">
+          <section className="h-[calc(100%-4.5rem)] flex flex-col px-4">
             {cartItems.length > 0 && (
               <>
-                <div className="flex-1 max-h-[calc(100%-100px)] overflow-hidden rounded-md pb-1">
+                <div className="flex-1 max-h-[calc(100%-120px)] overflow-hidden rounded-md pb-1">
                     <ScrollArea className="h-full rounded-md border">
                     <div className="h-fit space-y-3">
                       {cartItems.map((item: any, index: any) => (
-                        <div className="flex h-[110px] w-full relative">
+                        <div key={index} className="flex h-[90px] w-full relative">
                           <Link
                             href={`/categories/${item.category}/${item.id}`}
                           >
@@ -64,16 +68,16 @@ const CartTrigger = () => {
                             >
                               {item.name}
                             </Link>
-                            <p className="text-sm">
-                              <span className="text-sm">Size:&nbsp;</span>
+                            <p className="text-xs md:text-sm">
+                              <span>Size:&nbsp;</span>
                               {item.size}
                             </p>
-                            <p className="text-sm">
-                              <span className="text-sm">Quantity:&nbsp;</span>
+                            <p className="text-xs md:text-sm">
+                              <span>Quantity:&nbsp;</span>
                               {item.quantity}
                             </p>
-                            <p className="text-sm ">
-                              <span className="text-sm">Price: </span>
+                            <p className="text-xs md:text-sm">
+                              <span>Price: </span>
                               {item.price}৳
                             </p>
                           </div>
@@ -88,7 +92,7 @@ const CartTrigger = () => {
                     </div>
                     </ScrollArea>
                 </div>
-                <div className="my-2 h-[160px]">
+                <div className="h-[120px]">
                   <Separator className="bg-secNav" />
                   <div className="flex pt-2">
                     <span className="flex-1">Sub-Total:</span>
@@ -107,7 +111,7 @@ const CartTrigger = () => {
             {cartItems.length === 0 && (
               <div className="my-10">
                 <h4 className="text-base font-medium text-center py-4">
-                  Your cart is empty. Add something to cart and it will show up
+                  Your cart is empty🛒. Add something to cart and it will show up
                   here
                 </h4>
                 <Link

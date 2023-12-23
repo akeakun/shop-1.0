@@ -36,7 +36,7 @@ const MainImageSection = ({images}: MainImageSectionTypes) => {
             </div>
           </div>
           <div className="w-11/12 my-6 grid gap-4 lg:gap-10 grid-cols-4 px-8 lg:px-14">
-            {images.map((item, index) => (
+            {images.map((item: any, index: any) => (
               <div className={`${index === currentImage && " scale-110"} cursor-pointer hover:scale-105 transition-all duration-150 ease-in-out`} key={index} onClick={(e) => setImage(index)}>
                 <AspectRatio ratio={8 / 8}>
                   <Image

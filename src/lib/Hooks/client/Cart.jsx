@@ -11,7 +11,7 @@ export const CartProvider = ({ children }) => {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }
     setLoaded(true);
-  }, [cartItems]);
+  }, [cartItems, loaded]);
 
   useEffect(() => {
     if (window !== undefined) {

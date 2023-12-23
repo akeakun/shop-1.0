@@ -113,7 +113,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="lg:col-start-2 lg:row-start-2 p-4">
-              <h1 className="uppercase py-2">Follow our socials</h1>
+              <h1 className="uppercase py-2 text-sm">Follow our socials</h1>
                 <div className="flex space-x-2">
                 <Link href={""} className="hover:text-special">
                   <Facebook />

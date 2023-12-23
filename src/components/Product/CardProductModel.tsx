@@ -48,7 +48,7 @@ const CardProductModel = ({ product }: CardProductModelTypes) => {
       <CardFooter className="px-2 pb-1 flex flex-col">
         <p className="text-xs md:text-sm py-1">Sizes available:</p>
         <div className="flex space-x-1">
-          {product.stock.map((item, index) => (
+          {product.stock.map((item: any, index: any) => (
             <>
               <p className="text-sm md:text-base md:p-1 px-0.5 border border-gray-400 border-dashed">
                 {item.name}

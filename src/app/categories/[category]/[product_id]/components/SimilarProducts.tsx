@@ -1,5 +1,5 @@
 import "react-multi-carousel/lib/styles.css";
-import { CarouselComp } from "./utils/CarouselClient";
+import { CarouselComp, CustomLeftArrow, CustomRightArrow } from "./utils/CarouselClient";
 import { prodData } from "@/lib/demodata";
 import CardProductModel from "@/components/Product/CardProductModel";
 const SimilarProducts = () => {
@@ -7,22 +7,23 @@ const SimilarProducts = () => {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
       items: 4,
-      partialVisibilityGutter: 30
+      partialVisibilityGutter: 30,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
       items: 3,
-      partialVisibilityGutter: 20
+      partialVisibilityGutter: 20,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
       items: 2,
-      partialVisibilityGutter: 20
+      partialVisibilityGutter: 20,
     },
   };
   const productData = prodData;
   return (
     <CarouselComp
+      ssr={true}
       swipeable={true}
       draggable={false}
       responsive={responsive}
@@ -30,7 +31,8 @@ const SimilarProducts = () => {
       transitionDuration={500}
       removeArrowOnDeviceType={["mobile"]}
       partialVisible={true}
-
+      customRightArrow={<CustomRightArrow />}
+      customLeftArrow={<CustomLeftArrow/>}
       // containerClass="carousel-container"
     >
       {prodData.map((item, index) => (

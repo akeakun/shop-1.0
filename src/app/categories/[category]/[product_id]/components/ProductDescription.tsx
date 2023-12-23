@@ -20,7 +20,7 @@ type ProductDescriptionTypes = {
 const ProductDescription = ({ product }: ProductDescriptionTypes) => {
   const [currentSize, setCurrentSize] = useState(product.stock[0]);
   const setSize = (x: { name: string; stock: number }) => {
-    setCurrentSize((prevState) => {
+    setCurrentSize((prevState: any) => {
       return x;
     });
   };
@@ -43,7 +43,7 @@ const ProductDescription = ({ product }: ProductDescriptionTypes) => {
       </div>
       <div className="flex items-center py-2 my-2">
         <p>Size:</p>
-        {product.stock.map((item, index) => (
+        {product.stock.map((item: any, index: any) => (
           <div
             key={index}
             className={`mx-2 px-2 rounded-sm border border-gray-800 cursor-pointer ${
