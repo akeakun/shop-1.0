@@ -15,17 +15,19 @@ type CardProductModelTypes = {
 
 const CardProductModel = ({ product }: CardProductModelTypes) => {
   return (
-    <Card className="w-full bg-cardBg rounded-md ">
+    <Card className="w-full bg-mainBg rounded-sm shadow-transparent border-none">
       <CardHeader className="p-0 block">
         <section className="relative">
           <div className="w-full">
             <AspectRatio ratio={8 / 8}>
+              <Link href={`/categories/${product.category}/${product.uid}`} className="block h-full w-full">
               <Image
                 src={`/products/${product.main_display_image}`}
                 fill
                 alt="Image"
                 className="rounded-md object-cover"
               />
+              </Link>
             </AspectRatio>
           </div>
           {product.discount_percentage > 0 && (
@@ -39,24 +41,13 @@ const CardProductModel = ({ product }: CardProductModelTypes) => {
       </CardHeader>
       <CardContent className="p-2 pb-0">
         <Link href={`/categories/${product.category}/${product.uid}`}>
-          <p className="line-clamp-2 text-sm md:text-base tracking-wider">
+          <p className="line-clamp-2 text-xs text-center hover:underline md:text-base tracking-wider">
             {product.title}
           </p>
         </Link>
-        <p className=" text-red-400 text-md">{1700}৳</p>
+        <p className=" text-md p-2 pt-0 font-light text-center">TK {1700}</p>
       </CardContent>
-      <CardFooter className="px-2 pb-1 flex flex-col">
-        <p className="text-xs md:text-sm py-1">Sizes available:</p>
-        <div className="flex space-x-1">
-          {product.stock.map((item: any, index: any) => (
-            <>
-              <p className="text-sm md:text-base md:p-1 px-0.5 border border-gray-400 border-dashed">
-                {item.name}
-              </p>
-            </>
-          ))}
-        </div>
-      </CardFooter>
+
     </Card>
   );
 };

@@ -10,7 +10,7 @@ const Page = () => {
     <>
       <Navigation />
       <section className="w-full flex flex-col flex-1 items-center ">
-        <div className="page-style-container">
+        <div className="page-style-container h-fit">
           <Canvas />
           <Featured />
           <section className="mt-2 p-2 flex justify-center">

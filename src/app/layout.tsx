@@ -17,12 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full w-full">
       <body className={`${inter.className} + bg-mainBg`}>
         <CartProvider>
-        <div className="w-full h-full">
         {children}
-        </div>
         <Toaster />
         </CartProvider>
       </body>
