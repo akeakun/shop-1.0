@@ -4,7 +4,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const Canvas = () => {
   return (
-    <div className="w-full space-x-1.5 md:grid md:grid-cols-3 md:grid-rows-2 py-2">
+    <div className="w-full space-x-1.5 md:grid md:grid-cols-3 md:grid-rows-2 p-2">
       <div className=" md:row-span-2 md:col-span-2">
         <AspectRatio
           asChild

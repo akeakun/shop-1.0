@@ -40,7 +40,7 @@ const MobileHamburg = () => {
           </SheetClose>
         </div>
         <nav className="h-full flex-1 flex flex-col justify-between overflow-hidden">
-          <ul className="p-4 flex flex-col gap-2 overflow-y-scroll no-scrollbar">
+          <ul className=" flex flex-col gap-2 overflow-y-scroll no-scrollbar">
             <li className="">
               <Link
                 href={"/home"}
@@ -71,7 +71,7 @@ const MobileHamburg = () => {
             <Categories />
             <Tags />
           </ul>
-          <div className="p-4">
+          <div className="">
             <ContactUs />
             <Account />
           </div>
