@@ -26,7 +26,7 @@ const CartTrigger = () => {
         </div>
         <ShoppingBag />
       </SheetTrigger>
-      <SheetContent className=" bg-mainBg p-0 w-10/12 md:max-w-[380px]">
+      <SheetContent asChild className=" bg-mainBg p-0 w-10/12 md:max-w-[380px]">
         <section className="h-full flex flex-col">
           <section className=" h-16 pb-2 mb-2 bg-mainNav text-buttonText relative">
             <h3 className="text-xl text-center font-bold uppercase px-4 py-1">Your Cart</h3>

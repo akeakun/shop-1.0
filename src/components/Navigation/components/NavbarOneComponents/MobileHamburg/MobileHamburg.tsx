@@ -26,9 +26,11 @@ const MobileHamburg = () => {
         <Menu />
       </SheetTrigger>
       <SheetContent
+        asChild
         className=" bg-mainBg p-0 sm:max-w-[320px] flex flex-col"
         side={"left"}
       >
+        <section>
         <div className="h-12 bg-mainNav relative">
           <div className="flex justify-center items-center h-full">
             <Logo />
@@ -71,9 +73,10 @@ const MobileHamburg = () => {
           </ul>
           <div className="p-4">
             <ContactUs />
-            <Account/>
+            <Account />
           </div>
         </nav>
+        </section>
       </SheetContent>
     </Sheet>
   );
