@@ -1,11 +1,11 @@
 "use client";
-import { clothingCategories } from "@/lib/demodata";
+import { clothingCategoriesWithImagesAndTitle } from "@/lib/demodata";
 import { Boxes, ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
 const Categories = () => {
-  const categories = clothingCategories;
+  const categories = clothingCategoriesWithImagesAndTitle;
 
   const [categoriesOpen, setCategoriesOpen] = useState(false);
   return (
@@ -25,11 +25,11 @@ const Categories = () => {
       >
         {categories.map((item, index) => (
           <Link
-            href={`/categories/${item}`}
+            href={`/categories/${item.name}`}
             key={index}
             className=" cursor-pointer items-center rounded-lg flex p-4 h-10 hover:bg-gray-300 w-full"
           >
-            {item}
+            {item.title}
           </Link>
         ))}
       </div>
