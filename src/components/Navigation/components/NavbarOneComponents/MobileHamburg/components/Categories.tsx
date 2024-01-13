@@ -1,12 +1,42 @@
 "use client";
-import { clothingCategoriesWithImagesAndTitle } from "@/lib/demodata";
 import { Boxes, ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-const Categories = () => {
-  const categories = clothingCategoriesWithImagesAndTitle;
+type ItemAttributes = {
+  Category: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  Link: string;
+};
 
+type Item = {
+  id: number;
+  attributes: ItemAttributes;
+};
+
+type Pagination = {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
+};
+
+type Meta = {
+  pagination: Pagination;
+};
+
+type ApiResponse = {
+  data: Item[];
+  meta: Meta;
+};
+
+type CategoriesTypes = {
+  categories: ApiResponse;
+};
+
+const Categories = ({ categories }: CategoriesTypes) => {
   const [categoriesOpen, setCategoriesOpen] = useState(false);
   return (
     <li className="">
@@ -23,13 +53,13 @@ const Categories = () => {
       <div
         className={`pl-10 overflow-hidden ${categoriesOpen ? " h-fit" : "h-0"}`}
       >
-        {categories.map((item, index) => (
+        {categories.data.map((item, index) => (
           <Link
-            href={`/categories/${item.name}`}
+            href={`/categories/${item.attributes.Link}`}
             key={index}
-            className=" cursor-pointer items-center rounded-lg flex p-4 h-10 hover:bg-gray-300 w-full"
+            className="cursor-pointer items-center rounded-lg flex p-2 h-10 hover:bg-gray-300 w-full"
           >
-            {item.title}
+            {item.attributes.Category}
           </Link>
         ))}
       </div>

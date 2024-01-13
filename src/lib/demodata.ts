@@ -24,21 +24,21 @@ export const links = [
 ];
 
 export const clothingCategoriesWithImagesAndTitle: {
-  name: string;
+  url: string;
   imageLink: string;
   title: string;
 }[] = [
-  { name: "T-Shirts", imageLink: "/products/1.jpg", title: "Demo Title 1" },
-  { name: "Jeans", imageLink: "/products/2.jpg", title: "Demo Title 2" },
-  { name: "Dresses", imageLink: "/products/3.jpg", title: "Demo Title 3" },
-  { name: "Sweaters", imageLink: "/products/4.jpg", title: "Demo Title 4" },
-  { name: "Jackets", imageLink: "/products/5.jpg", title: "Demo Title 5" },
-  { name: "Shorts", imageLink: "/products/6.jpg", title: "Demo Title 6" },
-  { name: "Skirts", imageLink: "/products/7.jpg", title: "Demo Title 7" },
-  { name: "Activewear", imageLink: "/products/8.jpg", title: "Demo Title 8" },
-  { name: "Accessories", imageLink: "/products/9.jpg", title: "Demo Title 9" },
-  { name: "Footwear", imageLink: "/products/10.jpg", title: "Demo Title 10" },
-  { name: "Shirts", imageLink: "/products/11.jpg", title: "Demo Title 10" },
+  { url: "T-Shirts", imageLink: "/products/1.jpg", title: "Demo Title 1" },
+  { url: "Jeans", imageLink: "/products/2.jpg", title: "Demo Title 2" },
+  { url: "Dresses", imageLink: "/products/3.jpg", title: "Demo Title 3" },
+  { url: "Sweaters", imageLink: "/products/4.jpg", title: "Demo Title 4" },
+  { url: "Jackets", imageLink: "/products/5.jpg", title: "Demo Title 5" },
+  { url: "Shorts", imageLink: "/products/6.jpg", title: "Demo Title 6" },
+  { url: "Skirts", imageLink: "/products/7.jpg", title: "Demo Title 7" },
+  { url: "Activewear", imageLink: "/products/8.jpg", title: "Demo Title 8" },
+  { url: "Accessories", imageLink: "/products/9.jpg", title: "Demo Title 9" },
+  { url: "Footwear", imageLink: "/products/10.jpg", title: "Demo Title 10" },
+  { url: "Shirts", imageLink: "/products/11.jpg", title: "Demo Title 10" },
 ];
 
 export const clothingTags: string[] = [

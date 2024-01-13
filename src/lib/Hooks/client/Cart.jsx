@@ -17,7 +17,6 @@ export const CartProvider = ({ children }) => {
     if (window !== undefined) {
       try {
         const localCart = localStorage.getItem("cartItems");
-        console.log(localCart);
         localCart !== null
           ? setCartItems(JSON.parse(localCart))
           : setCartItems([]);

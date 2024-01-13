@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .clip-path-category-polygon {
+    clip-path: polygon(100% 0, 99% 51%, 98% 100%, 8% 99%, 0 50%, 8% 0);
+  }
+}
+
 @layer base {
   :root {
     --primary-text: #455a64ff;
@@ -93,10 +99,32 @@ a {
   height: 3px;
 }
 
+.second-canvas-second-element {
+  clip-path: polygon(63% 0, 100% 0, 100% 100%, 33% 100%);
+}
+
+.second-canvas-first-element {
+  clip-path: polygon(63% 0, 0 0, 0 100%, 33% 100%);
+}
+
+/* .header-poly-element-right-first {
+  clip-path: polygon(100% 0, 0 0, 100% 100%, 0 100%);
+
+}
+.header-poly-element-right-second {
+  clip-path: polygon(48% 0, 100% 0, 49% 100%, 0% 100%);
+}
+
+.header-poly-element-left-first {
+  clip-path: polygon(100% 0, 0 0, 100% 100%, 0 100%);
 
 
+}
+.header-poly-element-left-second {
+  clip-path: polygon(0 0, 50% 0, 100% 100%, 50% 100%);
 
 
+} */
 
 
 

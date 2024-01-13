@@ -1,4 +1,3 @@
-import BreadCrumb from "@/components/BreadCrumb/BreadCrumb";
 import Navigation from "@/components/Navigation";
 import { prodData } from "@/lib/demodata";
 import { permanentRedirect } from "next/navigation";
@@ -22,7 +21,6 @@ const Page = async ({ params, searchParams }: PageTypes) => {
     return (
       <>
         <Navigation />
-        <BreadCrumb />
         <ShareProduct />
         <section className="w-full flex flex-col flex-1 items-center ">
           <div className="page-style-container">

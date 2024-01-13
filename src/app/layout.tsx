@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { CartProvider } from "@/lib/Hooks/client/Cart";
+import { ChevronUp } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +21,8 @@ export default function RootLayout({
     <html lang="en" className="h-full w-full">
       <body className={`${inter.className} + bg-mainBg`}>
         <CartProvider>
-        {children}
-        <Toaster />
+          {children}
+          <Toaster />
         </CartProvider>
       </body>
     </html>

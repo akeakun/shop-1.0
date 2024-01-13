@@ -67,14 +67,14 @@ const ProductDescription = ({ product }: ProductDescriptionTypes) => {
             Yes. It adheres to the WAI-ARIA design pattern.
           </AccordionContent>
         </AccordionItem>
-        <Separator className="bg-black" />
+        {/* <Separator className="bg-black" />
         <Link
           href={"#reviews"}
           className="h-14 flex items-center justify-between hover:underline font-medium"
         >
           <p>Reviews</p>
           <ChevronRight size={18} />
-        </Link>
+        </Link> */}
         <Separator className="bg-black" />
 
         <AccordionItem value="item-2">
