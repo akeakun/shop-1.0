@@ -55,7 +55,7 @@ const Categories = ({ categories }: CategoriesTypes) => {
       >
         {categories.data.map((item, index) => (
           <Link
-            href={`/categories/${item.attributes.Link}`}
+            href={`/products?category=${item.attributes.Link}`}
             key={index}
             className="cursor-pointer items-center rounded-lg flex p-2 h-10 hover:bg-gray-300 w-full"
           >

@@ -1,0 +1,31 @@
+{
+  filters: {
+    uid: {
+      $eq: 'f0d52754-7a59-4c3f-93fc-7cd193635d29',
+    },
+  },
+  populate: {
+    dp: {
+      fields: ['url', 'width', 'height', 'formats'],
+    },
+    images: {
+      fields: ['url', 'width', 'height', 'formats'],
+    },
+    category: {
+      fields: ['name', 'link']
+    },
+    sfs: {
+      fields: ['size', 'stock']
+    }
+  },
+  fields: ['createdAt', 'description', 'name', 'sku', 'price', 'uid', 'discount'],
+}
+
+{
+  populate: {
+    dp: {
+      fields: ['url', 'width', 'height', 'formats'],
+    },
+  },
+  fields: ['createdAt', 'name', 'price', 'uid', 'discount'],
+}

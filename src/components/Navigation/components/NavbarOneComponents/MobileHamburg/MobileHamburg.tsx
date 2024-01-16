@@ -113,7 +113,7 @@ const MobileHamburg = async () => {
                 </li>
                 <li className="">
                   <Link
-                    href={"/featured"}
+                    href={"/products?tag=featured"}
                     className="space-x-4 px-4 items-center rounded-lg flex h-10 hover:bg-gray-300 w-full"
                   >
                     <Sparkles />
@@ -122,7 +122,7 @@ const MobileHamburg = async () => {
                 </li>
                 <li className="">
                   <Link
-                    href={"flash-sale"}
+                    href={"/products?tag=flash-sale"}
                     className="space-x-4 px-4 items-center rounded-lg flex h-10 hover:bg-gray-300 w-full"
                   >
                     <BadgePercent />
@@ -130,7 +130,7 @@ const MobileHamburg = async () => {
                   </Link>
                 </li>
                 <Categories categories={categories} />
-                <Tags tags={tags} />
+                {/* <Tags tags={tags} /> */}
               </ul>
               <div className="">
                 <ContactUs />

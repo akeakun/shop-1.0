@@ -12,14 +12,14 @@ const DesktopNavbar = () => {
         <span>Home</span>
       </Link>
       <Link
-        href={"/featured"}
+        href={"/products?tag=featured"}
         className="text-lg font-medium after:contents-[''] after:h-[3px] after:w-0 after:absolute after:-bottom-1 after:left-0 after:bg-special after:rounded-full hover:after:w-full after:transition-all after:duration-300 relative flex items-center space-x-1"
       >
         <Sparkles size={20} />
         <span>Featured</span>
       </Link>
       <Link
-        href={"/flash-sale"}
+        href={"/products?tag=flash-sale"}
         className="text-lg font-medium after:contents-[''] after:h-[3px] after:w-0 after:absolute after:-bottom-1 after:left-0 after:bg-special after:rounded-full hover:after:w-full after:transition-all after:duration-300 relative flex items-center space-x-1"
       >
         <BadgePercent size={20} />

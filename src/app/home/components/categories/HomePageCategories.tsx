@@ -1,8 +1,8 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { myImageLoader } from "@/lib/Hooks/client/ImageLoader";
 import { clothingCategoriesWithImagesAndTitle } from "@/lib/demodata";
 import Image from "next/image";
 import Link from "next/link";
-import myImageLoader from "../../../../lib/Hooks/client/ImageLoader";
 
 interface ImageFormat {
   name: string;
@@ -104,7 +104,6 @@ const HomePageCategories = async () => {
               <Image
                 loader={myImageLoader}
                 src={`${item.attributes.Image.data[0].attributes.url}`}
-                width={20}
                 quality={75}
                 alt={""}
                 fill
