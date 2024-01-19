@@ -1,4 +1,5 @@
 import { links } from "@/lib/demodata";
+import axios from "axios";
 import Link from "next/link";
 
 interface Product {
@@ -8,13 +9,13 @@ interface Product {
 interface FashionTag {
   id: number;
   attributes: {
-    TagsName: string;
+    name: string;
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
-    Link: string;
-    Special: boolean;
-    Hide: boolean,
+    link: string;
+    special: boolean;
+    hide: boolean,
     products: Product;
   };
 }
@@ -37,8 +38,11 @@ interface TagsData {
 
 
 const NavbarTwo = async () => {
-  const res = await fetch("http://localhost:1337/api/tags?populate=*");
-  const linksData: TagsData = await res.json()
+  const res = await axios.get("http://localhost:1337/api/tags?populate=*");
+  const linksData: TagsData = res.data
+  console.log(linksData);
+  
+
   
   return (
     <div className=" overflow-hidden w-full h-full flex justify-center">
@@ -46,21 +50,21 @@ const NavbarTwo = async () => {
         <nav className=" flex items-center w-fit h-full space-x-2 px-2">
           {linksData.data.map((item, index) => (
             <>
-              {!item.attributes.Hide && (
+              {!item.attributes.hide && (
                 <>
-                  {item.attributes.Special ? (
+                  {item.attributes.special ? (
                     <div className="" key={index}>
-                      <Link href={`/products?tag=${item.attributes.Link}`}>
+                      <Link href={`/products?tag=${item.attributes.link}`}>
                         <p className=" text-yellow-400 uppercase text-sm md:text-base whitespace-nowrap">
-                          {item.attributes.TagsName}
+                          {item.attributes.name}
                         </p>
                       </Link>
                     </div>
                   ) : (
                     <div className="" key={index}>
-                      <Link href={`/products?tag=${item.attributes.Link}`}>
+                      <Link href={`/products?tag=${item.attributes.link}`}>
                         <p className=" uppercase text-sm md:text-base whitespace-nowrap">
-                          {item.attributes.TagsName}
+                          {item.attributes.name}
                         </p>
                       </Link>
                     </div>

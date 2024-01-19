@@ -1,8 +1,10 @@
-import "react-multi-carousel/lib/styles.css";
-import { CarouselComp, CustomLeftArrow, CustomRightArrow } from "./utils/CarouselClient";
-import { prodData } from "@/lib/demodata";
-import CardProductModel from "@/components/Product/CardProductModel";
 import axios from "axios";
+import {
+  CarouselComp,
+  CustomLeftArrow,
+  CustomRightArrow,
+} from "./utils/CarouselClient";
+import CardProductModel from "@/components/Product/CardProductModel";
 
 interface DPAttributes {
   url: string;
@@ -45,10 +47,29 @@ interface ApiResponse {
   meta: Meta;
 }
 
-interface SimilarProducts {
-  category: string;
+interface MayAlsoLikeProps {
+  tags: {
+    data: {
+      id: number;
+      attributes: {
+        name: string;
+        link: string;
+      };
+    }[];
+  };
 }
-const SimilarProducts = async ({category}: SimilarProducts) => {
+
+const MayAlsoLike = async ({ tags }: MayAlsoLikeProps) => {
+  const query = tags.data.map((item, index) => {
+    return `filters[tags][name][${index}]=${item.attributes.name}&`;
+  });
+  const queryString = query.join("");
+  const res = await axios.get(
+    `http://localhost:1337/api/products?populate[dp][fields][0]=url&populate[dp][fields][1]=width&populate[dp][fields][2]=height&populate[dp][fields][3]=formats&fields[0]=createdAt&fields[1]=name&fields[2]=price&fields[3]=uid&fields[4]=discount&${queryString}&pagination[pageSize]=20&pagination[page]=1`
+  );
+  const productsData: ApiResponse = res.data;
+  console.log(productsData);
+  
 
   const responsive = {
     desktop: {
@@ -68,9 +89,6 @@ const SimilarProducts = async ({category}: SimilarProducts) => {
     },
   };
 
-  const res = await axios.get(`http://localhost:1337/api/products?populate[dp][fields][0]=url&populate[dp][fields][1]=width&populate[dp][fields][2]=height&fields[0]=createdAt&fields[1]=name&fields[2]=price&fields[3]=uid&fields[4]=discount&filters[category][name]=${category}&pagination[pageSize]=20&pagination[page]=1`)
-  const productData: ApiResponse = res.data
-
   return (
     <CarouselComp
       ssr={true}
@@ -82,10 +100,10 @@ const SimilarProducts = async ({category}: SimilarProducts) => {
       removeArrowOnDeviceType={["mobile"]}
       partialVisible={true}
       customRightArrow={<CustomRightArrow />}
-      customLeftArrow={<CustomLeftArrow/>}
+      customLeftArrow={<CustomLeftArrow />}
       // containerClass="carousel-container"
     >
-      {productData.data.map((item, index) => (
+      {productsData.data.map((item, index) => (
         <div key={index} className="mx-1">
           <CardProductModel product={item} />
         </div>
@@ -93,4 +111,5 @@ const SimilarProducts = async ({category}: SimilarProducts) => {
     </CarouselComp>
   );
 };
-export default SimilarProducts;
+
+export default MayAlsoLike;

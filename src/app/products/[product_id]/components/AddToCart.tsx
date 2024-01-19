@@ -3,13 +3,22 @@ import { useToast } from "@/components/ui/use-toast";
 import { CartContext } from "@/lib/Hooks/client/Cart";
 import { Minus, Plus, ShoppingBag } from "lucide-react";
 import { useContext, useState } from "react";
-
+interface Size {
+  id: number;
+  __component: string;
+  size: string;
+  stock: number;
+}
 type AddToCartTypes = {
-  product: any;
-  size: any;
+  id: string;
+  name: string;
+  size: Size;
+  price: number;
+  discount: number;
+  dp: string;
 };
 
-const AddToCart = ({ product, size }: AddToCartTypes) => {
+const AddToCart = ({ id, dp, name, price, size, discount }: AddToCartTypes) => {
   const [qty, setQty] = useState(1);
   const { toast } = useToast();
   const { cartItems, addToCart } = useContext(CartContext);
@@ -48,19 +57,18 @@ const AddToCart = ({ product, size }: AddToCartTypes) => {
     setIsWorking(true);
     if (qty >= size.stock) {
       setCartErrorMsg(
-        `you can add a maximum of ${size.stock} ${product.title} to your cart`
+        `you can add a maximum of ${size.stock} ${name} to your cart`
       );
       setIsWorking(false);
       return;
     }
     const prodToAdd = {
-      id: product.uid,
-      name: product.title,
-      size: size.name,
-      price: product.price,
+      id: id,
+      name: name,
+      size: size.size,
+      price: Math.round(price * (1 - discount / 100)),
       quantity: qty,
-      category: product.category,
-      image: product.main_display_image,
+      image: dp,
     };
     try {
       addToCart(prodToAdd);

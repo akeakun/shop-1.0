@@ -1,11 +1,15 @@
 "use client";
-import { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState({
+    products: [],
+    total: 0,
+  });
   const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
     if (loaded) {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -14,50 +18,73 @@ export const CartProvider = ({ children }) => {
   }, [cartItems, loaded]);
 
   useEffect(() => {
-    if (window !== undefined) {
+    if (typeof window !== "undefined") {
       try {
         const localCart = localStorage.getItem("cartItems");
         localCart !== null
           ? setCartItems(JSON.parse(localCart))
-          : setCartItems([]);
+          : setCartItems({ products: [], total: 0 });
       } catch (error) {
-        console.log("error");
+        console.log("Error parsing local storage:", error);
       }
     }
   }, []);
 
   const addToCart = (item) => {
-    const isItemInCart = cartItems.find(
-      (cartItem) => cartItem.id === item.id && cartItem.size === item.size
-    );
-    console.log(isItemInCart);
-    if (isItemInCart) {
-      setCartItems(
-        cartItems.map((cartItem) =>
+    setCartItems((prevCart) => {
+      const isItemInCart = prevCart.products.find(
+        (cartItem) => cartItem.id === item.id && cartItem.size === item.size
+      );
+
+      let updatedProducts;
+      if (isItemInCart) {
+        updatedProducts = prevCart.products.map((cartItem) =>
           cartItem.id === item.id && cartItem.size === item.size
             ? { ...cartItem, quantity: item.quantity }
             : cartItem
-        )
+        );
+      } else {
+        updatedProducts = [...prevCart.products, { ...item }];
+      }
+
+      const updatedTotal = updatedProducts.reduce(
+        (total, cartItem) => total + cartItem.price * cartItem.quantity,
+        0
       );
-    } else {
-      setCartItems([...cartItems, { ...item }]);
-    }
+
+      return {
+        ...prevCart,
+        products: updatedProducts,
+        total: updatedTotal,
+      };
+    });
   };
 
   const removeFromCart = (item) => {
-    setCartItems(
-      cartItems.filter((cartItem) => {
-        return cartItem !== item;
-      })
-    );
+    setCartItems((prevCart) => {
+      const updatedProducts = prevCart.products.filter(
+        (cartItem) => cartItem.id !== item.id || cartItem.size !== item.size
+      );
+
+      const updatedTotal = updatedProducts.reduce(
+        (total, cartItem) => total + cartItem.price * cartItem.quantity,
+        0
+      );
+
+      return {
+        ...prevCart,
+        products: updatedProducts,
+        total: updatedTotal,
+      };
+    });
   };
 
   const clearCart = () => {
-    setCartItems([]);
+    setCartItems({ products: [], total: 0 });
   };
 
   // const getCartTotal = () => {
-  //   return cartItems.reduce(
+  //   return cartItems.products.reduce(
   //     (total, item) => total + item.price * item.quantity,
   //     0
   //   );

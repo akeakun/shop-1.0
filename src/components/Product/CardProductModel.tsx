@@ -67,14 +67,14 @@ const CardProductModel = ({ product }: CardProductModelTypes) => {
         </section>
       </CardHeader>
       <CardContent className="p-2 pb-0 flex flex-col gap-2">
-        <Link href={`/products/${product.attributes.uid}`}>
-          <h6 className="line-clamp-2 text-[12px] text-center hover:underline md:text-base tracking-wider">
+        <Link href={`/products/${product.attributes.uid}`} className=" h-6">
+          <h6 className="line-clamp-2 text-[14px] text-center hover:underline md:text-base tracking-wider leading-4">
             {product.attributes.name}
           </h6>
         </Link>
         {product.attributes.discount > 0 ? (
-          <div className="flex flex-col gap-2">
-            <p className="text-center text-xs md:text-sm">
+          <div className="flex flex-col">
+            <p className="text-center text-[12px] md:text-sm">
               <span className="bg-secNav text-buttonText px-1 py-0.5">
                 Save TK.{" "}
                 {Math.round(
@@ -86,18 +86,18 @@ const CardProductModel = ({ product }: CardProductModelTypes) => {
             </p>
             <div className="flex gap-2 items-center justify-center py-1">
               <span className="text-red-400 text-sm font-medium line-through">
-                {Math.round(
-                  product.attributes.price *
-                    (1 - product.attributes.discount / 100)
-                )}
-                ৳
+                <span className="font-medium">{product.attributes.price}৳</span>
               </span>
-              <span className="font-medium">{product.attributes.price}৳</span>
+              {Math.round(
+                product.attributes.price *
+                  (1 - product.attributes.discount / 100)
+              )}
+              ৳
             </div>
           </div>
         ) : (
-          <div className="flex flex-col gap-2">
-            <p className="text-center text-xs md:text-sm opacity-0">
+          <div className="flex flex-col">
+            <p className="text-center text-[12px] md:text-sm opacity-0">
               <span className="bg-secNav text-buttonText px-1 py-0.5">
                 Save TK 0
               </span>
@@ -108,7 +108,12 @@ const CardProductModel = ({ product }: CardProductModelTypes) => {
           </div>
         )}
       </CardContent>
-      <AddToBagDrawer />
+      <AddToBagDrawer
+        dp={product.attributes.dp.data.attributes.url}
+        name={product.attributes.name}
+        uid={product.attributes.uid}
+        discount={product.attributes.discount}
+      />
     </Card>
   );
 };

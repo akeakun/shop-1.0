@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 
 type ItemAttributes = {
-  Category: string;
+  name: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  Link: string;
+  link: string;
 };
 
 type Item = {
@@ -55,11 +55,11 @@ const Categories = ({ categories }: CategoriesTypes) => {
       >
         {categories.data.map((item, index) => (
           <Link
-            href={`/products?category=${item.attributes.Link}`}
+            href={`/products?category=${item.attributes.link}`}
             key={index}
             className="cursor-pointer items-center rounded-lg flex p-2 h-10 hover:bg-gray-300 w-full"
           >
-            {item.attributes.Category}
+            {item.attributes.name}
           </Link>
         ))}
       </div>

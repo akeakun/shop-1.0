@@ -13,11 +13,11 @@ import ContactUs from "./components/ContactUs";
 import Account from "./components/Account";
 
 interface CategoryItemAttributes {
-  Category: string;
+  name: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  Link: string;
+  link: string;
 }
 
 interface CategoryItem {
@@ -42,11 +42,11 @@ interface CategoryApiResponse {
 }
 
 interface TagsItemAttributes {
-  TagsName: string;
+  name: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  Link: string;
+  link: string;
 }
 
 interface TagsItem {

@@ -1,3 +1,4 @@
+import Header from "@/components/Header/Header";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { myImageLoader } from "@/lib/Hooks/client/ImageLoader";
 import { clothingCategoriesWithImagesAndTitle } from "@/lib/demodata";
@@ -48,12 +49,12 @@ interface Image {
 }
 
 interface CategoryItemAttributes {
-  Category: string;
+  name: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  Link: string;
-  Image: Image;
+  link: string;
+  image: Image;
 }
 
 interface CategoryItem {
@@ -79,31 +80,27 @@ interface CategoryApiResponse {
 
 const HomePageCategories = async () => {
   const cat = await fetch(
-    "http://localhost:1337/api/categories?populate=Image"
+    "http://localhost:1337/api/categories?populate=image"
   );
   const categoriesData: Promise<CategoryApiResponse> = cat.json();
   const categories: CategoryApiResponse = await categoriesData;
   return (
     <div className="mt-14">
-      <header className="text-center bg-secNav text-buttonText py-2 md:py-4">
-        <h2 className="text-xl md:text-2xl font-bold leading-8 uppercase">
-          Collections
-        </h2>
-        <p className="text-sm md:text-base">
-          Browse from our list of categories
-        </p>
-      </header>
+      <Header
+        head="Collections"
+        paragraph="Browse from our list of categories"
+      />
       <section className="flex flex-wrap">
         {categories.data.map((item, index) => (
           <Link
             key={index}
             className="w-1/2 p-2 h-fit md:w-1/3 lg:w-1/4 relative"
-            href={`/products?category=${item.attributes.Link}`}
+            href={`/products?category=${item.attributes.link}`}
           >
             <AspectRatio ratio={8 / 8}>
               <Image
                 loader={myImageLoader}
-                src={`${item.attributes.Image.data[0].attributes.url}`}
+                src={`${item.attributes.image.data[0].attributes.url}`}
                 quality={75}
                 alt={""}
                 fill
@@ -111,7 +108,7 @@ const HomePageCategories = async () => {
             </AspectRatio>
             <div className="bg-secNav text-buttonText text-center clip-path-category-polygon h-8 md:h-10 w-4/5 absolute top-3/4 transform -translate-y-1/2 right-0 p-1">
               <h3 className="inline-block text-xs md:text-sm align-middle font-semibold">
-                {item.attributes.Category}
+                {item.attributes.name}
               </h3>
             </div>
           </Link>

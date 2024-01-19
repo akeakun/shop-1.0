@@ -3,106 +3,146 @@ import MainImageSection from "./MainImageSection";
 import ProductDescription from "./ProductDescription";
 import SimilarProducts from "./SimilarProducts";
 import { MoveRight } from "lucide-react";
+import { BlocksContent } from "@strapi/blocks-react-renderer";
+import MayAlsoLike from "./MayAlsoLike";
+import Header from "@/components/Header/Header";
+// interface DescriptionText {
+//   type: "paragraph" | "list";
+//   children: DescriptionTextItem[];
+// }
+
+// interface DescriptionTextItem {
+//   type: "text" | "list-item";
+//   text: string;
+//   format?: "unordered" | "ordered";
+//   bold?: boolean;
+//   italic?: boolean;
+//   underline?: boolean;
+//   strikethrough?: boolean;
+// }
+
+interface ProductAttributes {
+  createdAt: string; // timestamp format
+  description: BlocksContent;
+  name: string;
+  sku: string;
+  price: number;
+  uid: string;
+  discount: number;
+  dp: {
+    data: {
+      id: number;
+      attributes: {
+        url: string;
+        width: number;
+        height: number;
+        formats: {
+          thumbnail: ImageFormat;
+          small: ImageFormat;
+        };
+      };
+    };
+  };
+  images: {
+    data: {
+      id: number;
+      attributes: {
+        url: string;
+        width: number;
+        height: number;
+        formats: {
+          thumbnail: ImageFormat;
+          small: ImageFormat;
+        };
+      };
+    }[];
+  };
+  category: {
+    data: {
+      id: number;
+      attributes: {
+        name: string;
+        link: string;
+      };
+    };
+  };
+  tags: {
+    data: {
+      id: number;
+      attributes: {
+        name: string;
+        link: string;
+      };
+    }[];
+  };
+  sfs: {
+    id: number;
+    __component: string;
+    size: string;
+    stock: number;
+  }[];
+}
 
 interface ImageFormat {
   name: string;
   hash: string;
   ext: string;
   mime: string;
-  path: string | null;
+  path: null;
   width: number;
   height: number;
   size: number;
   url: string;
 }
 
-interface ImageAttributes {
+interface ProductData {
   id: number;
-  attributes: {
-    url: string;
-    width: number;
-    height: number;
-    formats: {
-      thumbnail: ImageFormat;
-      small: ImageFormat;
+  attributes: ProductAttributes;
+}
+
+interface ProductResponse {
+  data: ProductData[];
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
     };
   };
 }
 
-interface Size {
-  id: number;
-  __component: string;
-  size: string;
-  stock: number;
-}
-
-interface Description {
-  type: string;
-  children: Array<{ type: string; text: string }>;
-}
-
-interface TShirt {
-  id: number;
-  attributes: {
-    createdAt: string;
-    description: Description[];
-    name: string;
-    sku: string;
-    price: number;
-    uid: string;
-    discount: number;
-    dp: { data: ImageAttributes };
-    images: { data: ImageAttributes[] };
-    category: { data: { id: number; attributes: { name: string; link: string } } };
-    sfs: Size[];
-  };
-}
-
-interface Pagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
-}
-
-interface Meta {
-  pagination: Pagination;
-}
-
-interface ApiResponse {
-  data: TShirt[];
-  meta: Meta;
-}
-
 type ProductTypes = {
-  product: ApiResponse
-}
+  product: ProductResponse;
+};
 
 const ProductPage = ({ product }: ProductTypes) => {
   return (
     <div>
       <section className="flex flex-col md:flex-row md:justify-center">
-        <MainImageSection images={product.data[0].attributes.dp.data.attributes.url} />
-        <ProductDescription product={product} />
+        <MainImageSection
+          images={product.data[0].attributes.images}
+          dp={product.data[0].attributes.dp}
+        />
+        <ProductDescription product={product.data[0]} />
       </section>
       <section>
-        <header className="text-center mb-4">
-          <h2 className="text-xl font-semibold">Similar Products</h2>
-          <p className="text-base font-medium">
-            Products with similar category
-          </p>
-        </header>
-        <SimilarProducts />
+        <Header
+          head={"Similar Products"}
+          paragraph={"Products with similar category"}
+        />
+        <SimilarProducts
+          category={product.data[0].attributes.category.data.attributes.name}
+        />
       </section>
       {/* something else products */}
-      {/* <section>
-      <header className="text-center mb-4">
-          <h2 className="text-xl font-semibold">Similar Products</h2>
-          <p className="text-base font-medium">
-            Products with similar category
-          </p>
-        </header>
-      </section> */}
+      <section>
+        <Header
+          head={"Shop More Styles"}
+          paragraph={"Elevate your everyday style"}
+        />
+        <MayAlsoLike tags={product.data[0].attributes.tags} />
+      </section>
       <section className="mt-4 p-2 flex justify-center">
         <Link
           href={"/categories"}
