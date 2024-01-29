@@ -5,6 +5,7 @@ const Featured = () => {
   return (
     <div className=" mt-14">
       <Header
+      classes=""
         head="Featured Products"
         paragraph="Products currently on trending and top selling"
       />

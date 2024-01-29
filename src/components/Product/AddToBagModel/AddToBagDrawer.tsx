@@ -27,6 +27,7 @@ import Image from "next/image";
 import { myImageLoader } from "@/lib/Hooks/client/ImageLoader";
 import Link from "next/link";
 import AddToCart from "@/app/products/[product_id]/components/AddToCart";
+import { useMediaQuery } from "@/lib/Hooks/client/useMediaQuery";
 
 // Sizes component type
 interface Size {
@@ -93,17 +94,9 @@ const AddToBagDrawer = ({ dp, name, uid, discount }: AddToBagDrawerProps) => {
     fetchData();
   }, []);
 
-  console.log(currentSize);
-  console.log(remoteData);
 
-  const mediaChecker = (query: string): boolean => {
-    if (typeof window !== "undefined") {
-      return window.matchMedia(query).matches;
-    }
-    return false;
-  };
 
-  const isDesktop = mediaChecker("(min-width: 470px)");
+  const isDesktop = useMediaQuery("(min-width: 470px)");
 
   if (isDesktop) {
     return (

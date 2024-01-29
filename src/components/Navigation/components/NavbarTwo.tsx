@@ -1,4 +1,4 @@
-import { links } from "@/lib/demodata";
+import { links } from "@/lib/temp/demodata";
 import axios from "axios";
 import Link from "next/link";
 
@@ -40,7 +40,7 @@ interface TagsData {
 const NavbarTwo = async () => {
   const res = await axios.get("http://localhost:1337/api/tags?populate=*");
   const linksData: TagsData = res.data
-  console.log(linksData);
+  // console.log(linksData);
   
 
   

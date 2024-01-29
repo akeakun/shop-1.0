@@ -16,11 +16,17 @@ import { MoveRight, ShoppingBag, ShoppingCart, Trash2, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { myImageLoader } from "@/lib/Hooks/client/ImageLoader";
-import { CheckoutHandler } from "@/lib/Hooks/server/CheckOutHandler";
+import { CheckoutGen } from "@/lib/Hooks/server/CheckOutGen";
+import { redirect, useRouter } from "next/navigation";
 
 const CartTrigger = () => {
   const { cartItems, removeFromCart } = useContext(CartContext);
-  ;
+
+  const CheckOutBtnClick = () => {
+    try {
+      CheckoutGen(cartItems);
+    } catch (error: any) {}
+  };
 
   return (
     <Sheet>
@@ -115,8 +121,9 @@ const CartTrigger = () => {
                     <span className="flex-1">Total:</span>
                     <span>{cartItems.total}</span>
                   </div>
-                  <button className="bg-button text-buttonText py-2 hover:bg-gray-900 w-full"
-                  onClick={() => CheckoutHandler(cartItems)}
+                  <button
+                    className="bg-button text-buttonText py-2 hover:bg-gray-900 w-full"
+                    onClick={() => CheckOutBtnClick()}
                   >
                     Continue to Checkout
                   </button>

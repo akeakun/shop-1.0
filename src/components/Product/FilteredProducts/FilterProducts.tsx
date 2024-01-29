@@ -1,4 +1,4 @@
-import { prodData } from "@/lib/demodata"
+import { prodData } from "@/lib/temp/demodata"
 
 type FilterProductsTypes = {
 data: string

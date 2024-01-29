@@ -1,0 +1,166 @@
+{
+  "data": [
+    {
+      "_id": "faridpur",
+      "district": "Faridpur",
+      "coordinates": "23.5424, 89.6309",
+      "upazilla": [
+        "Boalmari",
+        "Faridpur Sadar",
+        "Alfadanga",
+        "Charbhadrasan",
+        "Madhukhali",
+        "Saltha",
+        "Sadarpur",
+        "Nagarkanda",
+        "Bhanga"
+      ]
+    },
+    {
+      "_id": "gazipur",
+      "district": "Gazipur",
+      "coordinates": "24.0958, 90.4125",
+      "upazilla": [
+        "Kapasia",
+        "Kaliganj",
+        "Kaliakair",
+        "Sreepur",
+        "Gazipur Sadar"
+      ]
+    },
+    {
+      "_id": "gopalganj",
+      "district": "Gopalganj",
+      "coordinates": "23.0488, 89.8879",
+      "upazilla": [
+        "Tungipara",
+        "Kashiani",
+        "Muksudpur",
+        "Kotalipara",
+        "Gopalganj Sadar"
+      ]
+    },
+    {
+      "_id": "kishoreganj",
+      "district": "Kishoreganj",
+      "coordinates": "24.4260, 90.9821",
+      "upazilla": [
+        "Kishoreganj Sadar",
+        "Itna",
+        "Austagram",
+        "Pakundia",
+        "Hossainpur",
+        "Tarail",
+        "Bhairab",
+        "Mithamain",
+        "Bajitpur",
+        "Kuliarchar",
+        "Katiadi",
+        "Nikli",
+        "Karimganj"
+      ]
+    },
+    {
+      "_id": "madaripur",
+      "district": "Madaripur",
+      "coordinates": "23.2393, 90.1870",
+      "upazilla": ["Shibchar", "Madaripur Sadar", "Kalkini", "Rajoir"]
+    },
+    {
+      "_id": "manikganj",
+      "district": "Manikganj",
+      "coordinates": "23.8617, 90.0003",
+      "upazilla": [
+        "Manikgonj Sadar",
+        "Shivalaya",
+        "Ghior",
+        "Harirampur",
+        "Singair",
+        "Daulatpur",
+        "Saturia"
+      ]
+    },
+    {
+      "_id": "munshiganj",
+      "district": "Munshiganj",
+      "coordinates": "23.4981, 90.4127",
+      "upazilla": [
+        "Sreenagar",
+        "Gazaria",
+        "Tongibari",
+        "Sirajdikhan",
+        "Munshiganj Sadar",
+        "Lohajang"
+      ]
+    },
+    {
+      "_id": "narayanganj",
+      "district": "Narayanganj",
+      "coordinates": "23.7147, 90.5636",
+      "upazilla": [
+        "Rupganj",
+        "Bandar",
+        "Sonargaon",
+        "Araihazar",
+        "Narayanganj Sadar"
+      ]
+    },
+    {
+      "_id": "narsingdi",
+      "district": "Narsingdi",
+      "coordinates": "24.1344, 90.7860",
+      "upazilla": [
+        "Palash",
+        "Belabo",
+        "Narsingdi Sadar",
+        "Raipura",
+        "Monohardi",
+        "Shibpur"
+      ]
+    },
+    {
+      "_id": "rajbari",
+      "district": "Rajbari",
+      "coordinates": "23.7151, 89.5875",
+      "upazilla": [
+        "Baliakandi",
+        "Rajbari Sadar",
+        "Goalandaghat",
+        "Pangsha",
+        "Kalukhali"
+      ]
+    },
+    {
+      "_id": "shariatpur",
+      "district": "Shariatpur",
+      "coordinates": "23.2423, 90.4348",
+      "upazilla": [
+        "Damudya",
+        "Gosairhat",
+        "Shariatpur Sadar",
+        "Zajira",
+        "Naria",
+        "Bhedarganj"
+      ]
+    },
+    {
+      "_id": "tangail",
+      "district": "Tangail",
+      "coordinates": "24.3917, 89.9948",
+      "upazilla": [
+        "Kalihati",
+        "Nagarpur",
+        "Tangail Sadar",
+        "Sakhipur",
+        "Bhuapur",
+        "Madhupur",
+        "Gopalpur",
+        "Mirzapur",
+        "Delduar",
+        "Dhanbari",
+        "Ghatail",
+        "Basail"
+      ]
+    }
+  ]
+}

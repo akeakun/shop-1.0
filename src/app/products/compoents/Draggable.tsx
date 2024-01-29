@@ -10,14 +10,16 @@ const DraggableMenuBar = () => {
     setIsMenuBarOpen(!isMenuBarOpen);
   };
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = (e: any) => {
     setIsDragging(true);
+    // @ts-ignore
     setOffsetX(e.clientX - parseInt(document.getElementById('menuBar').style.right));
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: any) => {
     if (isDragging) {
       const newRight = e.clientX - offsetX;
+      // @ts-ignore
       document.getElementById('menuBar').style.right = `${newRight}px`;
     }
   };

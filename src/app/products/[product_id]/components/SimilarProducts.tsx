@@ -1,6 +1,6 @@
 import "react-multi-carousel/lib/styles.css";
 import { CarouselComp, CustomLeftArrow, CustomRightArrow } from "./utils/CarouselClient";
-import { prodData } from "@/lib/demodata";
+import { prodData } from "@/lib/temp/demodata";
 import CardProductModel from "@/components/Product/CardProductModel";
 import axios from "axios";
 

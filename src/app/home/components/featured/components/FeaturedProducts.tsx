@@ -1,4 +1,4 @@
-import { prodData } from "@/lib/demodata";
+import { prodData } from "@/lib/temp/demodata";
 import CardProduct from "./CardProduct";
 
 const FeaturedProducts = () => {

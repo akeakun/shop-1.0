@@ -1,7 +1,7 @@
 import Header from "@/components/Header/Header";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { myImageLoader } from "@/lib/Hooks/client/ImageLoader";
-import { clothingCategoriesWithImagesAndTitle } from "@/lib/demodata";
+import { clothingCategoriesWithImagesAndTitle } from "@/lib/temp/demodata";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -87,6 +87,7 @@ const HomePageCategories = async () => {
   return (
     <div className="mt-14">
       <Header
+        classes=""
         head="Collections"
         paragraph="Browse from our list of categories"
       />

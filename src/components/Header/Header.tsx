@@ -1,10 +1,11 @@
 interface HeaderProps {
+  classes: string;
   head: string;
   paragraph: string;
 }
-const Header = ({ head, paragraph }: HeaderProps) => {
+const Header = ({ head, paragraph, classes }: HeaderProps) => {
   return (
-    <header className="text-center h-fit w-full bg-secNav text-buttonText p-2 md:p-4 my-4 relative">
+    <header className={`text-center h-fit w-full bg-secNav text-buttonText p-2 md:p-4 my-4 relative ${classes}`}>
       <h2 className="text-xl md:text-2xl font-bold leading-8 uppercase">
         {head}
       </h2>

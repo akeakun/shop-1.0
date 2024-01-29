@@ -3,6 +3,7 @@ export const links = [
     name: "Winter Fasion",
   },
 
+
   {
     name: "Children",
   },
@@ -458,3 +459,13 @@ export const prodData = [
     tags: ["classic", "men's fashion", "polo"],
   },
 ];
+
+
+// const divisions = async () => {
+//     await fetch("https://bdapis.com/api/v1.1/divisions").then((jsonData) => {
+//         const data = jsonData.json()
+//         console.log(data);
+//     })
+// }
+
+// divisions()

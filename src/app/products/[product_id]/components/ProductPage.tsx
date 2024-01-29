@@ -128,6 +128,7 @@ const ProductPage = ({ product }: ProductTypes) => {
       </section>
       <section>
         <Header
+        classes=""
           head={"Similar Products"}
           paragraph={"Products with similar category"}
         />
@@ -138,6 +139,7 @@ const ProductPage = ({ product }: ProductTypes) => {
       {/* something else products */}
       <section>
         <Header
+        classes=""
           head={"Shop More Styles"}
           paragraph={"Elevate your everyday style"}
         />

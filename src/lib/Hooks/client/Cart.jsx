@@ -12,7 +12,10 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     if (loaded) {
-      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      console.log(cartItems);
+      const json = JSON.stringify(cartItems)
+      const encoded = btoa(json)
+      localStorage.setItem("cart_ref", encoded);
     }
     setLoaded(true);
   }, [cartItems, loaded]);
@@ -20,9 +23,13 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       try {
-        const localCart = localStorage.getItem("cartItems");
+        const localCart = localStorage.getItem("cart_ref");
         localCart !== null
-          ? setCartItems(JSON.parse(localCart))
+          ? setCartItems((prevCart) => {
+            const buffer = atob(localCart)
+            const decodedCart = JSON.parse(buffer)
+            return decodedCart
+          })
           : setCartItems({ products: [], total: 0 });
       } catch (error) {
         console.log("Error parsing local storage:", error);
@@ -96,7 +103,7 @@ export const CartProvider = ({ children }) => {
         cartItems,
         addToCart,
         removeFromCart,
-        // clearCart,
+        clearCart,
         // getCartTotal,
       }}
     >

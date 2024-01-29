@@ -1,5 +1,5 @@
 import Navigation from "@/components/Navigation";
-import { prodData } from "@/lib/demodata";
+import { prodData } from "@/lib/temp/demodata";
 import { notFound, permanentRedirect } from "next/navigation";
 import ProductPage from "./components/ProductPage";
 import ShareProduct from "./components/ShareProduct";
