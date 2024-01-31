@@ -72,10 +72,11 @@ interface AddToBagDrawerProps {
   dp: string;
   name: string;
   uid: string;
+  sku: string;
   discount: number;
 }
 
-const AddToBagDrawer = ({ dp, name, uid, discount }: AddToBagDrawerProps) => {
+const AddToBagDrawer = ({ dp, name, sku, uid, discount }: AddToBagDrawerProps) => {
   const [open, setOpen] = useState(false);
   const [remoteData, setRemoteData] = useState<ApiResponse>();
   const [currentSize, setCurrentSize] = useState<Size>();
@@ -185,6 +186,7 @@ const AddToBagDrawer = ({ dp, name, uid, discount }: AddToBagDrawerProps) => {
           size={currentSize || { id: 0, __component: "", size: "", stock: 0 }}
           price={remoteData?.data[0].attributes.price || 0}
           discount={discount}
+          sku={sku}
           dp={dp}
         />
         </DialogContent>
@@ -271,6 +273,7 @@ const AddToBagDrawer = ({ dp, name, uid, discount }: AddToBagDrawerProps) => {
         </div>
         <AddToCart
           id={uid}
+          sku={sku}
           name={name}
           size={currentSize || { id: 0, __component: "", size: "", stock: 0 }}
           price={remoteData?.data[0].attributes.price || 0}

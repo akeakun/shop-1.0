@@ -18,6 +18,7 @@ interface DataAttributes {
   price: number;
   uid: string;
   discount: number;
+  sku: string
   dp: {
     data: {
       id: number;
@@ -113,6 +114,7 @@ const CardProductModel = ({ product }: CardProductModelTypes) => {
         name={product.attributes.name}
         uid={product.attributes.uid}
         discount={product.attributes.discount}
+        sku={product.attributes.sku}
       />
     </Card>
   );

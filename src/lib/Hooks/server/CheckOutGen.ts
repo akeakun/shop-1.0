@@ -5,6 +5,7 @@ import { db } from "@/lib/prismaDB";
 
 interface Product {
   id: string;
+  sku: string;
   name: string;
   size: string;
   price: number;
@@ -17,22 +18,37 @@ interface ShoppingCart {
   total: number;
 }
 
-function extractProductDetails({
-  products,
-}: ShoppingCart): { id: string; quantity: number; size: string }[] {
-  return products.map(({ id, quantity, size }) => ({ id, quantity, size }));
+function extractProductDetails({ products }: ShoppingCart): {
+  id: string;
+  sku: string;
+  quantity: number;
+  size: string;
+}[] {
+  return products.map(({ id, sku, quantity, size }) => ({
+    id,
+    sku,
+    quantity,
+    size,
+  }));
 }
 
 export const CheckoutGen = async (cartItems: ShoppingCart) => {
   const extractedDetails = extractProductDetails(cartItems);
+
   const expirationTime = new Date();
   expirationTime.setHours(expirationTime.getHours() + 12);
 
   const checkout = await db.checkout.create({
     data: {
-      cartItems: JSON.stringify(extractedDetails),
       expirationTime: expirationTime,
+      cartItems: {
+        create: extractedDetails.map((detail) => ({
+          size: detail.size,
+          quantity: detail.quantity,
+          sku: detail.sku,
+        })),
+      },
     },
   });
-  redirect(`/checkout/${checkout.id}`)
+  redirect(`/checkout/${checkout.id}`);
 };

@@ -5,6 +5,7 @@ import dynamic, { noSSR } from "next/dynamic";
 import { db } from "@/lib/prismaDB";
 import { notFound, redirect } from "next/navigation";
 import { isCuid } from "@paralleldrive/cuid2";
+import { isUUID } from "validator";
 interface DpData {
   id: number;
   attributes: {
@@ -57,9 +58,11 @@ type Product = {
   quantity: number;
 };
 type Item = {
-  id: string;
-  quantity: number;
-  size: string;
+  id: number;
+    size: string;
+    quantity: number;
+    sku: string;
+    checkoutId: string | null;
 };
 
 type Cart = Item[];
@@ -70,7 +73,7 @@ type PageTypes = {
 
 const page = async ({ params }: PageTypes) => {
   const checkOutId = params.checkout_id;
-  const isValidUid = isCuid(checkOutId);
+  const isValidUid = isUUID(checkOutId);
   if (!isValidUid) {
     notFound();
   }
@@ -78,6 +81,9 @@ const page = async ({ params }: PageTypes) => {
     where: {
       id: checkOutId,
     },
+    include: {
+      cartItems: true,
+    }
   });
   if (!checkout) {
     redirect("/");
@@ -92,13 +98,15 @@ const page = async ({ params }: PageTypes) => {
     redirect("/");
   }
   const query = "http://localhost:1337/api/products";
-  const dbCart: Cart = JSON.parse(checkout.cartItems as string);
+  const dbCart: Cart = checkout.cartItems
   const products: Product[] = await Promise.all(
     dbCart.map(async (item) => {
       const response = await fetch(
-        `${query}?filters[uid][$eq]=${item.id}&populate[dp][fields][0]=url&fields[0]=name&fields[1]=price`
+        `${query}?filters[sku][$eq]=${item.sku}&populate[dp][fields][0]=url&fields[0]=name&fields[1]=price`
       );
       const product: ApiResponse = await response.json();
+      console.log(product);
+      
       product.data[0].attributes["size"] = item.size;
       product.data[0].attributes["quantity"] = item.quantity;
       return product.data[0].attributes;

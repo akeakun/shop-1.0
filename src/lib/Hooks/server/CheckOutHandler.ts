@@ -87,6 +87,9 @@ export const CheckOutHandler = async (
     where: {
       id: CheckOutId,
     },
+    include: {
+      cartItems: true,
+    },
   });
 
   if (!checkout) {
@@ -107,7 +110,7 @@ export const CheckOutHandler = async (
   }
 
   const query = "http://localhost:1337/api/products";
-  const dbCart: DBCart = JSON.parse(checkout.cartItems as string);
+  const dbCart = checkout.cartItems;
 
   const data = {
     data: {
@@ -119,7 +122,11 @@ export const CheckOutHandler = async (
       District: customerData.district,
       Address: customerData.address,
       PaymentMethod: customerData.paymentMethod,
-      Products: checkout.cartItems,
+      Products: dbCart.map((item) => ({
+        size: item.size,
+        quantity: item.quantity,
+        sku: item.sku,
+      })),
       OrderID: createId(),
     },
   };

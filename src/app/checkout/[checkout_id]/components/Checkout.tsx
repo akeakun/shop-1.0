@@ -16,7 +16,7 @@ type Product = {
       };
     };
   };
-  size: string; // No longer optional as all objects have it
+  size: string;
   quantity: number;
 };
 interface CheckoutProps {

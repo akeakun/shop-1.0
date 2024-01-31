@@ -1,24 +1,80 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./sd.db"
+}
+
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
-}
-
 model User {
-  id            String    @id @default(cuid())
-  name          String?
+  id            String    @id @default(uuid())
+  firstName     String?
+  lastName      String?
   email         String?   @unique
   emailVerified DateTime?
   image         String?
 }
 
 model Checkout {
-  id             String   @id @default(cuid())
-  createdAt      DateTime @default(now())
+  id             String     @id @default(uuid())
+  createdAt      DateTime   @default(now())
   expirationTime DateTime
-  cartItems      Json
+  cartItems      CartItem[] @relation(name: "cartItem")
 }
+
+model CartItem {
+  id         Int       @id @default(autoincrement())
+  size       String
+  quantity   Int
+  sku        String
+  Checkout   Checkout? @relation(name: "cartItem", fields: [checkoutId], references: [id])
+  checkoutId String?
+}
+
+// model Product {
+//   id          Int      @id() @default(autoincrement())
+//   name        String
+//   sku         String   @unique
+//   price       Decimal
+//   oldPrice    Decimal
+//   dp          String   
+//   images      String[] 
+//   video       String?
+//   category    Category @relation(fields: [categoryId], references: [id], name: "ProductCategory")
+//   categoryId  Int
+//   tags        Tag[]
+//   tagIds      Int[]
+//   sfs         Json
+//   slug        String   @unique
+//   description String   @db.Text
+
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+
+//   @@map("product")
+// }
+
+// model Category {
+//   id       Int       @id() @default(autoincrement())
+//   name     String    @unique @db.VarChar(255)
+//   slug     String    @unique
+//   products Product[] @relation(name: "ProductCategory")
+
+//   @@map("category")
+// }
+
+// model Tag {
+//   id       Int       @id() @default(autoincrement())
+//   name     String    @unique @db.VarChar(255)
+//   slug     String    @unique
+//   products Product[]
+
+//   @@map("tag")
+// }
+
+// Generate the slug with a short random generated id at the end
+// prisma.Product.update({
+//   where: { id: _ },
+//   data: { slug: { append: { id: crypto.randomUUID().substring(0, 6) } } },
+// })

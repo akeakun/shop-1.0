@@ -11,6 +11,7 @@ interface Size {
 }
 type AddToCartTypes = {
   id: string;
+  sku: string;
   name: string;
   size: Size;
   price: number;
@@ -18,7 +19,7 @@ type AddToCartTypes = {
   dp: string;
 };
 
-const AddToCart = ({ id, dp, name, price, size, discount }: AddToCartTypes) => {
+const AddToCart = ({ id, dp, name, price, size, discount, sku }: AddToCartTypes) => {
   const [qty, setQty] = useState(1);
   const { toast } = useToast();
   const { cartItems, addToCart } = useContext(CartContext);
@@ -64,6 +65,7 @@ const AddToCart = ({ id, dp, name, price, size, discount }: AddToCartTypes) => {
     }
     const prodToAdd = {
       id: id,
+      sku: sku,
       name: name,
       size: size.size,
       price: Math.round(price * (1 - discount / 100)),

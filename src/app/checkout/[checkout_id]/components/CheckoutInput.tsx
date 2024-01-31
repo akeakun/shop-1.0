@@ -482,21 +482,21 @@ const CheckoutInput = ({ cart, checkout_id }: CheckoutInputProps) => {
                                   Cash on delivery
                                 </FormLabel>
                               </FormItem>
-                              <FormItem className="flex items-center space-x-3 space-y-0">
+                              {/* <FormItem className="flex items-center space-x-3 space-y-0">
                                 <FormControl>
                                   <RadioGroupItem value="online" />
                                 </FormControl>
                                 <FormLabel className="font-normal py-3">
                                   Online payment
                                 </FormLabel>
-                              </FormItem>
+                              </FormItem> */}
                             </RadioGroup>
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                    {paymentMethodValue === "online" && (
+                    {/* {paymentMethodValue === "online" && (
                       <>
                         <Label>We accept the following methods:</Label>
                         <div className="p-4 pb-0">
@@ -527,7 +527,7 @@ const CheckoutInput = ({ cart, checkout_id }: CheckoutInputProps) => {
                           </svg>
                         </div>
                       </>
-                    )}
+                    )} */}
                   </CardContent>
                 </Card>
               </div>
